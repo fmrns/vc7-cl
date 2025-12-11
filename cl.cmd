@@ -20,8 +20,8 @@ for /F "usebackq delims=" %%e in (`where.exe "%PATH%;c:\Vc7\bin:cl.exe" 2^>nul`)
     set FMS_CL_LIB=%%~dpe..\lib
   )
 )
-if "%FMS_CL%"=="" (
-  for /F "usebackq delims=" %%e in (`where.exe /R "%USERPROFILE%\Desktop" cl.exe 2^>nul`) do (
+if "%FMS_CL%"=="" for %%d in ("c:\emTech" "%USERPROFILE%\Desktop") do (
+  if "!FMS_CL!"=="" for /F "usebackq delims=" %%e in (`where.exe /R "%%d" cl.exe 2^>nul`) do (
     if "!FMS_CL!"=="" (
       set FMS_CL=%%~fe
       set FMS_CL_INCLUDE=%%~dpe..\include
