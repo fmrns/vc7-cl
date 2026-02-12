@@ -4,8 +4,8 @@ setlocal enabledelayedexpansion
 rem
 rem Released under MIT License
 rem
-rem Copyright (c) 2024,2025 Fumiyuki Shimizu
-rem Copyright (c) 2024,2025 Abacus Technologies, Inc.
+rem Copyright (c) 2024,2026 Fumiyuki Shimizu
+rem Copyright (c) 2024,2026 Abacus Technologies, Inc.
 rem
 rem Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 rem The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
@@ -20,8 +20,8 @@ for /F "usebackq delims=" %%e in (`where.exe "%PATH%;c:\Vc7\bin:cl.exe" 2^>nul`)
     set FMS_CL_LIB=%%~dpe..\lib
   )
 )
-if "%FMS_CL%"=="" (
-  for /F "usebackq delims=" %%e in (`where.exe /R "%USERPROFILE%\Desktop" cl.exe 2^>nul`) do (
+if "%FMS_CL%"=="" for %%d in ("c:\emTech" "%USERPROFILE%\Desktop") do (
+  if "!FMS_CL!"=="" for /F "usebackq delims=" %%e in (`where.exe /R "%%d" cl.exe 2^>nul`) do (
     if "!FMS_CL!"=="" (
       set FMS_CL=%%~fe
       set FMS_CL_INCLUDE=%%~dpe..\include
